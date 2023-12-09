@@ -8,12 +8,10 @@ class MealsScreen extends StatelessWidget {
     super.key,
     this.categoryTitle,
     required this.mealsList,
-    required this.toggleMealFavStatus,
   });
 
   final String? categoryTitle;
   final List<Meal> mealsList;
-  final void Function(Meal meal) toggleMealFavStatus;
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +42,6 @@ class MealsScreen extends StatelessWidget {
         itemBuilder: (context, index) {
           return MealItem(
             meal: mealsList[index],
-            toggleMealFavorite: toggleMealFavStatus,
           );
         },
       );
@@ -55,9 +52,10 @@ class MealsScreen extends StatelessWidget {
     }
 
     return Scaffold(
-        appBar: AppBar(
-          title: Text(categoryTitle!),
-        ),
-        body: bodyContent);
+      appBar: AppBar(
+        title: Text(categoryTitle!),
+      ),
+      body: bodyContent,
+    );
   }
 }
