@@ -89,7 +89,22 @@ class MealDetailsScreen extends ConsumerWidget {
               wasAdded ? 'Meal added as a favorite.' : 'Meal removed.';
           _showInfoMessage(displayMessage, context);
         },
-        child: Icon(isAddedToFavorite ? Icons.star : Icons.star_border_outlined),
+        child: AnimatedSwitcher(
+          duration: const Duration(milliseconds: 300),
+          child: Icon(
+            isAddedToFavorite ? Icons.star : Icons.star_border_outlined,
+            key: ValueKey(isAddedToFavorite),
+          ),
+          transitionBuilder: (child, animation) {
+            return RotationTransition(
+              turns: Tween<double>(
+                begin: 0.8,
+                end: 1,
+              ).animate(animation),
+              child: child,
+            );
+          },
+        ),
       ),
     );
   }
